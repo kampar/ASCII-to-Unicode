@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>ASCII to Unicode Generator untuk Chat di WA</title>
+<!-- Muhammad Jazman -->
+<head>
+<body>
+  Write here:<br/>
+  <textarea id='textAreaInput' onchange="toUnicode()" onkeypress="toUnicode()" onblur="toUnicode()">Muhammad Jazman</textarea>
+  <br/>
+  <br/>
+  <br/>
+  <br/>Bold
+  <br/>
+  <textarea id='textAreaOutputBold'></textarea>
+
+  <br/>BoldItalic<br/>
+  <textarea id='textAreaOutput'></textarea>
+
+  <br/>textAreaOutput_1D56D<br/>
+  <textarea id='textAreaOutput_1D56D'></textarea>
+
+  <br/>textAreaOutput_1D5A1<br/>
+  <textarea id='textAreaOutput_1D5A1'></textarea>
+
+
+  <br/>textAreaOutput_1D5D5<br/>
+  <textarea id='textAreaOutput_1D5D5'></textarea>
+
+
+
+  <br/>textAreaOutput_1D609<br/>
+  <textarea id='textAreaOutput_1D609'></textarea>
+
+
+
+  <br/>textAreaOutput_1D63D<br/>
+  <textarea id='textAreaOutput_1D63D'></textarea>
+
+
+  <br/>textAreaOutput_1D671<br/>
+  <textarea id='textAreaOutput_1D671'></textarea>
+<hr/>
+  <br/>textAreaOutput_1D435 (this char is missing: h )<br/>
+  <textarea id='textAreaOutput_1D435'></textarea>
+
+
+  <br/>textAreaOutput_1D49D (these chars are missing: B E F  H I R e g o )<br/>
+  <textarea id='textAreaOutput_1D49D'></textarea>
+
+  <br/>textAreaOutput_1D505 (these chars are missing: C H I R Z )<br/>
+  <textarea id='textAreaOutput_1D505'></textarea>
+
+
+  <br/>textAreaOutput_1D539 (these chars are missing: C H N PQR  Z )<br/>
+  <textarea id='textAreaOutput_1D539'></textarea>
+
+<script type="text/javascript">
+var textAreaInput;
+var textAreaOutput;
+function toUnicode(){
+  textAreaInput = document.getElementById('textAreaInput');
+  textAreaOutput = document.getElementById('textAreaOutput');
+  document.getElementById('textAreaOutputBold').value=_decodeAa(textAreaInput.value,119913,119939);
+  document.getElementById('textAreaOutput').value = _decodeAa(textAreaInput.value,0x1D4D1,0x1D4EB);
+  document.getElementById('textAreaOutput_1D56D').value = _decodeAa(textAreaInput.value,0x1D56D,0x1D587);
+  document.getElementById('textAreaOutput_1D5A1').value = _decodeAa(textAreaInput.value,0x1D5A1,0x1D5BB);
+  document.getElementById('textAreaOutput_1D5D5').value = _decodeAa(textAreaInput.value,0x1D5D5,0x1D5EF);
+  document.getElementById('textAreaOutput_1D609').value = _decodeAa(textAreaInput.value,0x1D609,0x1D623);
+  document.getElementById('textAreaOutput_1D63D').value = _decodeAa(textAreaInput.value,0x1D63D,0x1D657);
+  document.getElementById('textAreaOutput_1D671').value = _decodeAa(textAreaInput.value,0x1D671,0x1D68B);
+  document.getElementById('textAreaOutput_1D435').value = _decodeAa(textAreaInput.value,0x1D435,0x1D44F);//some ERROR
+  document.getElementById('textAreaOutput_1D49D').value = _decodeAa(textAreaInput.value,0x1D49D,0x1D4B7);//some ERROR
+  document.getElementById('textAreaOutput_1D505').value = _decodeAa(textAreaInput.value,0x1D505,0x1D51F);//some ERROR
+  document.getElementById('textAreaOutput_1D539').value = _decodeAa(textAreaInput.value,0x1D539,0x1D553);//some ERROR
+}
+function _decodeAa(t,A,a)
+{
+  var tmp="";
+  var c=0,d=0;
+  for(i=0;i<t.length;i++){
+    c = t.charCodeAt(i);//kita gunakan ASCII saja
+    if(c>=97 && c<=122){
+      //huruf kecil
+      d=a+( t.codePointAt(i)-98 );
+      tmp+=String.fromCodePoint(d);
+    }else if(c>=65 && c<=90){
+      //huruf besar
+ 
+      d=A+( t.codePointAt(i)-66 );
+      tmp+=String.fromCodePoint(d);
+    }else{
+      //karakter lain ...
+      tmp+=t.charAt(i);
+    }
+  }
+  return tmp;
+}
+
+
+toUnicode();
+</script>  
+
+  
+</body>
+</html>
