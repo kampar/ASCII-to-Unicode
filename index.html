@@ -2,10 +2,14 @@
 <head>
 <title>ASCII to Unicode Generator untuk Chat di WA</title>
 <!-- Muhammad Jazman -->
+  <style>textarea{    width: 100%;
+    min-height: 50;
+}</style>
 <head>
 <body>
   Write here:<br/>
-  <textarea id='textAreaInput' onchange="toUnicode()" onkeypress="toUnicode()" onblur="toUnicode()">Muhammad Jazman</textarea>
+  <textarea id='textAreaInput' onchange="toUnicode()" onkeypress="toUnicode()" onblur="toUnicode()">Assalamu 'alaikum Warahmatullahi Wabarakatuhu
+Wa 'alaikum Salam Warahmatullahi Wa Barakatuhu</textarea>
   <br/>
   <br/>
   <br/>
@@ -16,42 +20,42 @@
   <br/>BoldItalic<br/>
   <textarea id='textAreaOutput'></textarea>
 
-  <br/>textAreaOutput_1D56D<br/>
+  <br/>1D56D<br/>
   <textarea id='textAreaOutput_1D56D'></textarea>
 
-  <br/>textAreaOutput_1D5A1<br/>
+  <br/>1D5A1<br/>
   <textarea id='textAreaOutput_1D5A1'></textarea>
 
 
-  <br/>textAreaOutput_1D5D5<br/>
+  <br/>1D5D5<br/>
   <textarea id='textAreaOutput_1D5D5'></textarea>
 
 
 
-  <br/>textAreaOutput_1D609<br/>
+  <br/>1D609<br/>
   <textarea id='textAreaOutput_1D609'></textarea>
 
 
 
-  <br/>textAreaOutput_1D63D<br/>
+  <br/>1D63D<br/>
   <textarea id='textAreaOutput_1D63D'></textarea>
 
 
-  <br/>textAreaOutput_1D671<br/>
+  <br/>1D671<br/>
   <textarea id='textAreaOutput_1D671'></textarea>
 <hr/>
-  <br/>textAreaOutput_1D435 (this char is missing: h )<br/>
+  <br/>1D435 (this char is missing: h )<br/>
   <textarea id='textAreaOutput_1D435'></textarea>
 
 
-  <br/>textAreaOutput_1D49D (these chars are missing: B E F  H I R e g o )<br/>
+  <br/>1D49D (these chars are missing: B E F H I R e g o )<br/>
   <textarea id='textAreaOutput_1D49D'></textarea>
 
-  <br/>textAreaOutput_1D505 (these chars are missing: C H I R Z )<br/>
+  <br/>1D505 (these chars are missing: C H I R Z )<br/>
   <textarea id='textAreaOutput_1D505'></textarea>
 
 
-  <br/>textAreaOutput_1D539 (these chars are missing: C H N PQR  Z )<br/>
+  <br/>1D539 (these chars are missing: C H N PQR  Z )<br/>
   <textarea id='textAreaOutput_1D539'></textarea>
 
 <script type="text/javascript">
@@ -79,18 +83,84 @@ function _decodeAa(t,A,a)
   var c=0,d=0;
   for(i=0;i<t.length;i++){
     c = t.charCodeAt(i);//kita gunakan ASCII saja
-    if(c>=97 && c<=122){
-      //huruf kecil
-      d=a+( t.codePointAt(i)-98 );
-      tmp+=String.fromCodePoint(d);
-    }else if(c>=65 && c<=90){
-      //huruf besar
- 
-      d=A+( t.codePointAt(i)-66 );
-      tmp+=String.fromCodePoint(d);
+     
+    //update:
+    // dari pada ditampilkan yang error, kita substitusi saja
+    //
+    if(A==0x1D435 && c==104){// h error
+      //c=="h".charCodeAt(0)){//104
+      //tmp+=_decodeAa("h",0x1D609,0x1D623);
+          tmp+=String.fromCodePoint(0x1D623+104-98);
+
+    //[ B E F H I R e g o ] are missing from 0x1D49D, substitude them from 0x1D435
+    }else if(A==0x1D49D && c=="B".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D435+"B".charCodeAt(0)-66);//B Besar
+    }else if(A==0x1D49D && c=="E".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D435+"E".charCodeAt(0)-66);//E
+    }else if(A==0x1D49D && c=="F".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D435+"F".charCodeAt(0)-66);//F
+    }else if(A==0x1D49D && c=="H".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D435+"H".charCodeAt(0)-66);//H
+    }else if(A==0x1D49D && c=="I".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D435+"I".charCodeAt(0)-66);//I
+    }else if(A==0x1D49D && c=="R".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D435+"R".charCodeAt(0)-66);//
+    }else if(A==0x1D49D && c=="e".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D44F+"e".charCodeAt(0)-98);// hurufkecil
+    }else if(A==0x1D49D && c=="g".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D44F+"g".charCodeAt(0)-98);//
+    }else if(A==0x1D49D && c=="o".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D44F+"o".charCodeAt(0)-98);//
+      
+    //C H I R Z  are missing from  1D505 
+    }else if(A==0x1D505 && c=="C".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D49D+"C".charCodeAt(0)-66);
+    }else if(A==0x1D505 && c=="H".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D435+"H".charCodeAt(0)-66);
+    }else if(A==0x1D505 && c=="I".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D435+"I".charCodeAt(0)-66);
+    }else if(A==0x1D505 && c=="R".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D435+"R".charCodeAt(0)-66);
+    }else if(A==0x1D505 && c=="Z".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D49D+"Z".charCodeAt(0)-66);
+
+
+
+    // 1D539 (these chars are missing: C H N PQR Z )
+    }else if(A==0x1D539 && c=="C".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D49D+"C".charCodeAt(0)-66);
+    }else if(A==0x1D539 && c=="H".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D435+"H".charCodeAt(0)-66);
+    }else if(A==0x1D539 && c=="N".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D505+"N".charCodeAt(0)-66);
+    }else if(A==0x1D539 && c=="P".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D505+"P".charCodeAt(0)-66);
+    }else if(A==0x1D539 && c=="Q".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D505+"Q".charCodeAt(0)-66);
+    }else if(A==0x1D539 && c=="R".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D435+"R".charCodeAt(0)-66);
+    }else if(A==0x1D539 && c=="Z".charCodeAt(0)){
+      tmp+=String.fromCodePoint(0x1D49D+"Z".charCodeAt(0)-66);
+
+
+  
     }else{
-      //karakter lain ...
-      tmp+=t.charAt(i);
+    
+      //non error
+      if(c>=97 && c<=122){
+        //c adalah kode ASCII huruf kecil
+
+        d=a+( t.codePointAt(i)-98 );
+        tmp+=String.fromCodePoint(d);
+      }else if(c>=65 && c<=90){
+        //huruf besar
+   
+        d=A+( t.codePointAt(i)-66 );
+        tmp+=String.fromCodePoint(d);
+      }else{
+        //karakter lain ...
+        tmp+=t.charAt(i);
+      }
     }
   }
   return tmp;
